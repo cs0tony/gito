@@ -1,12 +1,32 @@
 {
-  "name": "gitmergeto",
-  "module": "index.js",
+  "name": "gito",
+  "version": "1.0.0",
+  "description": "Git safe merge tool - A CLI utility for safe git branch merging",
+  "module": "index.ts",
   "type": "module",
-  "private": true,
+  "bin": {
+    "gito": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "bun run index.ts",
+    "build": "bun build src/cli.ts --outdir ./dist --target bun",
+    "build:mac": "bun build src/cli.ts --compile --minify --target=bun-darwin-arm64 --outfile ./dist/gito",
+    "prepublishOnly": "bun run build"
+  },
+  "private": false,
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
-  }
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ]
 }

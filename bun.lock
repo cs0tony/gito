@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "gitmergeto",
+      "name": "gito",
       "devDependencies": {
         "@types/bun": "latest",
       },
