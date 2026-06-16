@@ -1,12 +1,35 @@
 # gito
 
-A safe Git merge CLI tool built with Bun. Helps you safely merge branches with automatic conflict handling and configuration management.
+A safe Git merge CLI tool built with Bun. **Automatically merge current branch to target branch and switch back.**
+
+## ✨ Highlight: Auto Merge & Return
+
+**Tired of manual branch switching?** gito does it all for you:
+
+1. 📍 Detect your current branch (e.g., `feature/add-auth`)
+2. 🎯 Switch to target branch (e.g., `main`)
+3. 🔀 Merge your feature branch into target
+4. 📤 Optionally push to remote
+5. 🔙 **Automatically switch back to your feature branch**
+
+```bash
+# You're on feature/add-auth
+gito mergeto main
+
+# gito automatically:
+# ✓ Switches to main
+# ✓ Merges feature/add-auth into main
+# ✓ Pushes (if --push)
+# ✓ Switches back to feature/add-auth
+# ← You're still on feature/add-auth, ready to continue coding!
+```
 
 ## Features
 
+- 🔄 **Auto switch back** - Automatically return to your working branch after merge
+- 🎯 Smart branch detection - No need to manually specify current branch
 - 🚀 Built with Bun for fast performance
 - 📝 Persistent configuration management
-- 🔄 Automatic branch switching and restoration
 - 💬 Interactive prompts with auto-confirm mode
 - 🎨 Beautiful colored terminal output
 - ⚙️ Config priority: CLI args > config file > defaults
@@ -25,14 +48,34 @@ bun link
 
 ## Usage
 
+### The "Merge & Return" Workflow
+
+The core advantage of gito is that you **stay on your feature branch** while merging to other branches:
+
+```bash
+# On feature/login-page, merge it to main
+gito mergeto main
+# ✓ Switched to main and merged feature/login-page
+# ✓ Pushed to remote (if configured)
+# ✓ Switched back to feature/login-page ← You're back!
+
+# On feature/api-v2, merge to develop with auto-push
+gito mergeto develop --push
+# ✓ All done, still on feature/api-v2
+
+# Quick merge to configured default target (default: test)
+gito mergeto --push
+# ✓ Merged to test, pushed, and back on your branch
+```
+
 ### Basic merge
 
 ```bash
 # Merge current branch to test (interactive)
 gito mergeto
 
-# Merge feature branch to develop (interactive)
-gito mergeto develop feature
+# Merge specific feature branch to develop
+gito mergeto develop feature-branch
 
 # Merge with auto push
 gito mergeto --push
@@ -60,6 +103,42 @@ gito config reset
 # Edit configuration in your editor
 gito config edit
 ```
+
+## Why gito?
+
+### The Problem with Traditional Git Workflow
+
+```bash
+# ❌ Traditional manual workflow (8 steps, error-prone)
+git checkout main              # 1. Switch to main
+git pull origin main            # 2. Update main
+git merge feature/new-ui        # 3. Merge feature
+git push origin main            # 4. Push main
+git checkout feature/new-ui     # 5. Switch back (easy to forget!)
+# Continue coding...
+```
+
+**Common issues:**
+- ❌ Forget to switch back to feature branch
+- ❌ Accidentally commit to main branch
+- ❌ Lose track of which branch you were working on
+- ❌ Repetitive steps for every merge
+
+### The gito Solution
+
+```bash
+# ✅ gito workflow (1 command)
+gito mergeto main --push
+# ✓ Automatically handles all steps
+# ✓ Returns you to feature/new-ui
+# ✓ Ready to continue coding immediately
+```
+
+**Benefits:**
+- ✅ Always return to your working branch
+- ✅ Prevent accidental commits to wrong branch
+- ✅ Faster workflow with fewer mental steps
+- ✅ Consistent process across team
 
 ## Command Structure
 
