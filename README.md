@@ -36,10 +36,45 @@ gito mergeto main
 
 ## Installation
 
+### Quick Install (Recommended)
+
+#### Linux / macOS
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/cs0tony/gito/main/install.sh | sh
+```
+
+Or with a specific version:
+
+```bash
+GITO_VERSION=v0.0.1 curl -fsSL https://raw.githubusercontent.com/cs0tony/gito/main/install.sh | sh
+```
+
+#### Windows (PowerShell)
+
+```powershell
+irm https://raw.githubusercontent.com/cs0tony/gito/main/install.ps1 | iex
+```
+
+Or with a specific version:
+
+```powershell
+$env:GITO_VERSION='v0.0.1'; irm https://raw.githubusercontent.com/cs0tony/gito/main/install.ps1 | iex
+```
+
+#### Uninstall
+
+```bash
+# Linux / macOS
+curl -fsSL https://raw.githubusercontent.com/cs0tony/gito/main/install.sh | sh -s -- --uninstall
+
+# Windows: Delete $env:USERPROFILE\.gito and remove from PATH
+```
+
 ### From source
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/cs0tony/gito.git
 cd gito
 bun install
 bun run build
