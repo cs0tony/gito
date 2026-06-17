@@ -91,7 +91,7 @@ ${colors.yellow}示例:${colors.nc}
  * 显示版本信息
  */
 export function showVersion(): void {
-  console.log('gito version 0.0.1');
+  console.log('gito version 0.0.2');
 }
 
 /**
