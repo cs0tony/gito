@@ -1,6 +1,6 @@
 {
   "name": "gito",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "Git safe merge tool - A CLI utility for safe git branch merging",
   "module": "index.ts",
   "type": "module",
