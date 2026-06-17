@@ -320,7 +320,8 @@ async function mainMergeFlow(
 
       if (shouldPush) {
         showInfo('推送到远程...');
-        await pushBranch(target);
+        const targetHasUpstream = await hasUpstream(target);
+        await pushBranch(target, !targetHasUpstream);
         showSuccess('已推送到远程');
       } else if (!autoPush && !autoConfirm) {
         showInfo('跳过推送');
@@ -331,7 +332,8 @@ async function mainMergeFlow(
       await checkoutBranch(source);
       if (shouldPush) {
         showInfo('推送到远程...');
-        await pushBranch(source);
+        const sourceHasUpstream = await hasUpstream(source);
+        await pushBranch(source, !sourceHasUpstream);
         showSuccess('已推送到远程');
       } else if (!autoPush && !autoConfirm) {
         showInfo('跳过推送');
