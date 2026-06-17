@@ -374,13 +374,13 @@ async function main() {
   // 显示帮助
   if (options.showHelp) {
     showHelp();
-    process.exit(0);
+    return;
   }
 
   // 显示版本
   if (options.showVersion) {
     showVersion();
-    process.exit(0);
+    return;
   }
 
   // 如果没有指定命令，默认使用 mergeto
@@ -430,7 +430,11 @@ process.on('unhandledRejection', (error: any) => {
 });
 
 // 运行主函数（只在直接运行时执行）
-if (import.meta.path === bun_main) {
+// 在编译后的可执行文件中，import.meta.path 和 bun_main 可能使用不同的路径分隔符
+// 所以我们需要归一化后再比较
+const normalizedPath = import.meta.path.replace(/\\/g, '/');
+const normalizedMain = bun_main.replace(/\\/g, '/');
+if (normalizedPath === normalizedMain) {
   main().catch(error => {
     showError(`未处理的错误：${error.message}`);
     process.exit(1);

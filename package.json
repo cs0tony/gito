@@ -10,7 +10,6 @@
   "scripts": {
     "dev": "bun run index.ts",
     "build": "bun build src/cli.ts --outdir ./dist --target bun",
-    "build:mac": "bun build src/cli.ts --compile --minify --target=bun-darwin-arm64 --outfile ./dist/gito",
     "prepublishOnly": "bun run build"
   },
   "private": false,
